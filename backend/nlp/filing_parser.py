@@ -10,6 +10,7 @@ import httpx
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 
+from backend.shared.db import portable_ddl
 from backend.services.lm_studio_client import LMStudioError, get_lm_studio_client, parse_json_response
 
 _CATALYST_WORDS = {
@@ -68,7 +69,8 @@ _NEGATIVE_WORDS = {
 def ensure_conviction_table(db: Session) -> None:
     db.execute(
         text(
-            """
+            portable_ddl(
+                """
             CREATE TABLE IF NOT EXISTS stock_conviction_records (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 symbol TEXT NOT NULL,
@@ -85,6 +87,7 @@ def ensure_conviction_table(db: Session) -> None:
                 UNIQUE(symbol, market, record_date)
             )
             """
+            )
         )
     )
     db.execute(text("CREATE INDEX IF NOT EXISTS idx_stock_conviction_symbol_date ON stock_conviction_records(symbol, market, record_date)"))

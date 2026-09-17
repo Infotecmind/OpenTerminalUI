@@ -7,7 +7,7 @@ from sqlalchemy import text
 
 from backend.fno.services.oi_analyzer import get_oi_analyzer
 from backend.fno.services.option_chain_fetcher import get_option_chain_fetcher
-from backend.shared.db import engine
+from backend.shared.db import engine, portable_ddl
 
 
 class PCRTracker:
@@ -47,7 +47,8 @@ class PCRTracker:
         with engine.begin() as conn:
             conn.execute(
                 text(
-                    """
+                    portable_ddl(
+                        """
                     CREATE TABLE IF NOT EXISTS pcr_snapshots (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         snapshot_date TEXT NOT NULL,
@@ -60,6 +61,7 @@ class PCRTracker:
                         UNIQUE(snapshot_date, symbol)
                     )
                     """
+                    )
                 )
             )
             conn.execute(text("CREATE INDEX IF NOT EXISTS idx_pcr_snapshots_symbol_date ON pcr_snapshots(symbol, snapshot_date)"))

@@ -6,7 +6,7 @@ from typing import Any
 from sqlalchemy import text
 
 from backend.fno.services.option_chain_fetcher import get_option_chain_fetcher
-from backend.shared.db import engine
+from backend.shared.db import engine, portable_ddl
 
 
 class IVEngine:
@@ -20,7 +20,8 @@ class IVEngine:
         with engine.begin() as conn:
             conn.execute(
                 text(
-                    """
+                    portable_ddl(
+                        """
                     CREATE TABLE IF NOT EXISTS iv_snapshots (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         snapshot_date TEXT NOT NULL,
@@ -30,6 +31,7 @@ class IVEngine:
                         UNIQUE(snapshot_date, symbol)
                     )
                     """
+                    )
                 )
             )
             conn.execute(text("CREATE INDEX IF NOT EXISTS idx_iv_snapshots_symbol_date ON iv_snapshots(symbol, snapshot_date)"))

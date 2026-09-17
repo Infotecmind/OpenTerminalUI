@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 import sqlite3
 
 from sqlalchemy import event
@@ -20,6 +21,28 @@ engine = create_engine(
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+
+def portable_ddl(sql: str) -> str:
+    """Rewrite SQLite-only DDL so the same statement also runs on PostgreSQL.
+
+    Several services create their own scratch tables with raw CREATE TABLE
+    written for SQLite, then execute it against whatever the main engine points
+    at. "INTEGER PRIMARY KEY AUTOINCREMENT" is SQLite-only syntax: Postgres
+    raises `syntax error at or near "AUTOINCREMENT"` and, because these run at
+    module import, that takes the whole application down before uvicorn starts.
+
+    SQLite is left untouched.
+    """
+    if engine.dialect.name != "postgresql":
+        return sql
+    return re.sub(
+        r"INTEGER\s+PRIMARY\s+KEY\s+AUTOINCREMENT",
+        "SERIAL PRIMARY KEY",
+        sql,
+        flags=re.IGNORECASE,
+    )
+
 
 
 @event.listens_for(engine, "connect")
