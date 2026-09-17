@@ -75,6 +75,11 @@ async def run_migrations_online() -> None:
 
     async with connectable.connect() as connection:
         await connection.run_sync(do_run_migrations)
+        # SQLAlchemy 2.0 connections are commit-as-you-go: closing one without
+        # committing rolls it back. Without this, every migration and every
+        # alembic_version row is discarded the moment this block exits, so the
+        # next start finds an empty version table and replays from base.
+        await connection.commit()
 
     await connectable.dispose()
 
