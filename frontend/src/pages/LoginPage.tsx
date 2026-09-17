@@ -218,7 +218,7 @@ export function LoginPage() {
             <p>
               New to FinInfo Terminal? <Link to="/register">Request access</Link>
             </p>
-            <p className="ot-login-meta">v1.0.0 | MIT LICENSE | FinInfo Terminal</p>
+            <p className="ot-login-meta">v1.0.0 | FinInfo Terminal | tec Solution @2026</p>
           </footer>
         </div>
       </section>
