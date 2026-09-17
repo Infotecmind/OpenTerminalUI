@@ -11,7 +11,7 @@ export function InstallPrompt({ show, onInstall, onDismiss }: Props) {
     <div className="fixed bottom-16 left-2 right-2 z-50 rounded border border-terminal-accent bg-terminal-panel p-3 text-xs md:bottom-3 md:left-auto md:right-3 md:w-96 md:max-w-md">
       <div className="flex items-start justify-between gap-3">
         <div className="flex-1">
-          <div className="mb-1 text-terminal-text font-medium">Install OpenTerminalUI</div>
+          <div className="mb-1 text-terminal-text font-medium">Install FinInfo Terminal</div>
           <div className="text-terminal-muted">Get app-like experience with offline access and home screen shortcut.</div>
         </div>
         <button

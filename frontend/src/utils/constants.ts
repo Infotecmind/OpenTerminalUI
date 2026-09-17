@@ -1,4 +1,4 @@
-export const APP_NAME = "OpenTerminalUI";
+export const APP_NAME = "FinInfo Terminal";
 export const APP_VERSION = "0.7.0";
 
 export const MOMENTUM_ROTATION_BASKET = [

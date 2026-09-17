@@ -115,7 +115,7 @@ export function LoginPage() {
 
         <div className="ot-brand-block">
           <div className="ot-brand-logo-row">
-            <img src={logo} alt="OpenTerminalUI" className="ot-brand-logo" />
+            <img src={logo} alt="FinInfo Terminal" className="ot-brand-logo" />
             <span className="ot-brand-kicker">OPEN-SOURCE TRADING TERMINAL</span>
           </div>
           <h1 className="ot-brand-title">
@@ -129,7 +129,7 @@ export function LoginPage() {
         <div className="ot-login-panel-inner">
           <header className="ot-stagger" style={{ ["--stagger-index" as string]: 1 }}>
             <div className="ot-panel-logo-wrap">
-              <img src={logo} alt="OpenTerminalUI logo" className="ot-panel-logo" />
+              <img src={logo} alt="FinInfo Terminal logo" className="ot-panel-logo" />
             </div>
             <p className="ot-panel-kicker">SECURE ACCESS</p>
             <h2 className="ot-panel-title">AUTHENTICATE</h2>
@@ -216,9 +216,9 @@ export function LoginPage() {
 
           <footer className="ot-login-footer ot-stagger" style={{ ["--stagger-index" as string]: 10 }}>
             <p>
-              New to OpenTerminal? <Link to="/register">Request access</Link>
+              New to FinInfo Terminal? <Link to="/register">Request access</Link>
             </p>
-            <p className="ot-login-meta">v1.0.0 | MIT LICENSE | tec FinInfo</p>
+            <p className="ot-login-meta">v1.0.0 | MIT LICENSE | FinInfo Terminal</p>
           </footer>
         </div>
       </section>

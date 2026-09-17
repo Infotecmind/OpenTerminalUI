@@ -60,7 +60,7 @@ export function RegisterPage() {
 
         <div className="ot-brand-block">
           <div className="ot-brand-logo-row">
-            <img src={logo} alt="OpenTerminalUI" className="ot-brand-logo" />
+            <img src={logo} alt="FinInfo Terminal" className="ot-brand-logo" />
             <span className="ot-brand-kicker">OPEN-SOURCE TRADING TERMINAL</span>
           </div>
           <h1 className="ot-brand-title">
@@ -74,7 +74,7 @@ export function RegisterPage() {
         <div className="ot-login-panel-inner">
           <header className="ot-stagger" style={{ ["--stagger-index" as string]: 1 }}>
             <div className="ot-panel-logo-wrap">
-              <img src={logo} alt="OpenTerminalUI logo" className="ot-panel-logo" />
+              <img src={logo} alt="FinInfo Terminal logo" className="ot-panel-logo" />
             </div>
             <p className="ot-panel-kicker">NEW OPERATOR</p>
             <h2 className="ot-panel-title">REQUEST ACCESS</h2>

@@ -89,7 +89,7 @@ export function IconRail() {
       onKeyDown={onRailKeyDown}
     >
       <div className="flex items-center justify-center border-b border-terminal-border px-2 py-2">
-        <img src={BRAND_ICON_SRC} alt="OpenTerminalUI" className="h-7 w-7 max-w-full object-contain" />
+        <img src={BRAND_ICON_SRC} alt="FinInfo Terminal" className="h-7 w-7 max-w-full object-contain" />
       </div>
       <nav className="flex-1 space-y-1 overflow-auto p-2">
         {items.map((item, index) => (

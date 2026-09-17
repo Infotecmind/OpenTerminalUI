@@ -69,7 +69,7 @@ export function StatusBar({ tickerOverride }: Props) {
         </div>
         <div className="flex items-center gap-2 border-l border-terminal-border pl-2">
           <span className="rounded border border-terminal-border px-1.5 py-0.5 text-[10px] text-terminal-accent">
-            OpenTerminalUI V{APP_VERSION}
+            FinInfo Terminal V{APP_VERSION}
           </span>
           <span>DATA</span>
           <TerminalBadge variant={dataState.variant}>{dataState.label}</TerminalBadge>

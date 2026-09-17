@@ -1,6 +1,6 @@
 {
-  "name": "OpenTerminalUI - Financial Trading Terminal",
-  "short_name": "OTUI",
+  "name": "FinInfo Terminal",
+  "short_name": "FinInfo",
   "description": "Professional financial trading terminal with real-time market data, charting, screening, and portfolio management.",
   "start_url": "/",
   "scope": "/",

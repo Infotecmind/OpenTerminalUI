@@ -42,7 +42,7 @@ export function MobileSidebar({ isOpen, onClose }: Props) {
         className={`fixed inset-y-0 left-0 z-50 w-64 transform border-r border-terminal-border bg-terminal-panel transition-transform duration-200 ease-in-out ${isOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex items-center justify-between border-b border-terminal-border px-3 py-2">
-          <span className="text-sm font-semibold text-terminal-accent">OpenTerminal</span>
+          <span className="text-sm font-semibold text-terminal-accent">FinInfo Terminal</span>
           <button
             type="button"
             className="rounded-sm border border-terminal-border p-1 text-terminal-muted transition-colors hover:text-terminal-text"

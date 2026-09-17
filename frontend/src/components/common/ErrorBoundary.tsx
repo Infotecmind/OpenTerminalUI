@@ -40,7 +40,7 @@ function ErrorBoundaryFallback({
         <div className="relative">
           <img
             src={BRAND_ICON_SRC}
-            alt="OpenTerminalUI"
+            alt="FinInfo Terminal"
             className={`h-16 w-16 object-contain ${isAutoRetrying ? "animate-pulse" : "opacity-60"}`}
           />
           {isAutoRetrying && (

@@ -288,10 +288,10 @@ export function TopBar({ hideTickerLoader = false, hideMarketMarquee = false }: 
           <Link
             to="/"
             className="inline-flex h-7 items-center rounded border border-terminal-border bg-terminal-panel px-1.5"
-            aria-label="OpenTerminalUI Home"
+            aria-label="FinInfo Terminal Home"
             title="Home"
           >
-            <img src={BRAND_ICON_SRC} alt="OpenTerminalUI" className="h-5 w-5 object-contain" />
+            <img src={BRAND_ICON_SRC} alt="FinInfo Terminal" className="h-5 w-5 object-contain" />
           </Link>
           <nav className="flex shrink-0 items-center gap-2" aria-label="Main navigation">
             <Link className="rounded border border-terminal-border px-2 py-1 text-[11px] text-terminal-muted hover:text-terminal-text" to="/" title="Home">
@@ -406,10 +406,10 @@ export function TopBar({ hideTickerLoader = false, hideMarketMarquee = false }: 
         <Link
           to="/"
           className="inline-flex h-7 shrink-0 items-center border-l border-terminal-border pl-2"
-          aria-label="OpenTerminalUI Home (Top Right)"
-          title="OpenTerminalUI"
+          aria-label="FinInfo Terminal Home (Top Right)"
+          title="FinInfo Terminal"
         >
-          <img src={BRAND_ICON_SRC} alt="OpenTerminalUI" className="h-5 w-5 object-contain" />
+          <img src={BRAND_ICON_SRC} alt="FinInfo Terminal" className="h-5 w-5 object-contain" />
         </Link>
         {!hideTickerLoader && isSuggestionsOpen && results.length > 0 && (
           <div id="symbol-search-results" className="absolute left-3 right-3 top-10 z-10 max-h-72 overflow-auto rounded border border-terminal-border bg-terminal-panel" role="listbox" aria-label="Symbol search results">
