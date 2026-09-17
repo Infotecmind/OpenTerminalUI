@@ -1,32 +1,52 @@
-# Deployment compose for Coolify on a public VPS.
+# Coolify deployment: the APPLICATION and its cache only.
 #
-# Why this file exists instead of using docker-compose.yml directly:
-#   1. postgres in the upstream file is gated behind `profiles: ["postgres"]`,
-#      so Coolify never starts it.
-#   2. Upstream publishes redis 6379 and postgres 5432 to the host. On a VPS
-#      that is the public internet, and redis has no auth by default.
-#   3. BOOTSTRAP_ADMIN_* default to empty, and seed_admin.py silently no-ops
-#      without them -> a running app nobody can log into.
-#   4. No depends_on/healthchecks, but entrypoint.sh runs `alembic upgrade head`
-#      immediately -> crash-loop against a cold postgres.
+# The database is deliberately NOT here. It is a Coolify-managed PostgreSQL
+# resource, which is what gives it scheduled backups, one-click restore and
+# retention - none of which Coolify offers for a database buried inside a
+# compose application. Same reasoning as landanalysis on this VPS.
 #
-# Secrets use the `${VAR:?message}` form so a missing value fails the deploy
-# loudly instead of silently starting with an upstream default password.
+# Redis IS here, on purpose: it holds cache, pub/sub and sessions. Losing it
+# logs people out and re-warms the cache. Nothing in it is worth a backup
+# policy, so it does not earn a managed resource.
+#
+# Why this file exists instead of the upstream docker-compose.yml, which
+# targets a laptop and fails four ways on a public VPS:
+#   1. postgres was gated behind `profiles: ["postgres"]`, so Coolify never
+#      started it and the backend silently fell back to SQLite. Setting
+#      OPENTERMINALUI_ENV=production makes backend/db/base.py refuse SQLite
+#      outright, turning a silent fallback into a startup error.
+#   2. Upstream published redis 6379 and postgres 5432 to the host. On a VPS
+#      that is the public internet, and redis ships with no auth.
+#   3. BOOTSTRAP_ADMIN_* defaulted to empty; scripts/seed_admin.py no-ops
+#      without them and entrypoint.sh swallows it with `|| true`, leaving a
+#      healthy app nobody can log into.
+#   4. entrypoint.sh runs `alembic upgrade head` with nothing checking the
+#      database is reachable first.
+#
+# Set these in Coolify's Environment Variables, NOT here:
+#   DATABASE_URL          the Coolify Postgres resource's INTERNAL URL.
+#                         MUST begin postgresql+asyncpg:// - if Coolify hands
+#                         you a postgres:// URL, rewrite the scheme, because
+#                         backend/db/base.py only normalises postgresql://
+#                         and SQLAlchemy rejects postgres:// outright.
+#   JWT_SECRET_KEY        openssl rand -hex 32
+#   CACHE_SIGNING_KEY     openssl rand -hex 32
+#   REDIS_PASSWORD        openssl rand -hex 24
+#   BOOTSTRAP_ADMIN_*     without these you cannot log in
 
 services:
-  backend:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    # No `ports:` — Coolify's proxy reaches port 8000 over the internal network.
-    # Set the domain on this service in the Coolify UI (target port 8000).
+    restart: unless-stopped
     environment:
-      # Must be a non-dev value: backend/db/base.py refuses to run on SQLite
-      # outside dev, which is our guarantee that Postgres is really in use.
+      # Must be non-dev: backend/db/base.py refuses SQLite outside dev, which
+      # is the guarantee that the managed Postgres is really being used.
       OPENTERMINALUI_ENV: "${OPENTERMINALUI_ENV:-production}"
 
-      DATABASE_URL: "${DATABASE_URL:?set to postgresql+asyncpg://user:pass@postgres:5432/dbname}"
-      REDIS_URL: "${REDIS_URL:?set to redis://:password@redis:6379/0}"
+      DATABASE_URL: "${DATABASE_URL:?point this at the Coolify Postgres resource, scheme postgresql+asyncpg://}"
+      REDIS_URL: "${REDIS_URL:?set to redis://:PASSWORD@redis:6379/0, password matching REDIS_PASSWORD}"
 
       JWT_SECRET_KEY: "${JWT_SECRET_KEY:?generate with: openssl rand -hex 32}"
       CACHE_SIGNING_KEY: "${CACHE_SIGNING_KEY:?generate with: openssl rand -hex 32}"
@@ -39,7 +59,7 @@ services:
       # Upstream defaults to localhost:5173, which blocks the browser in prod.
       OPENTERMINALUI_CORS_ORIGINS: "${OPENTERMINALUI_CORS_ORIGINS:?set to https://your-domain}"
 
-      # Market data — all optional, app has built-in fallback providers.
+      # Market data - all optional, the app has built-in fallback providers.
       FMP_API_KEY: "${FMP_API_KEY:-}"
       FINNHUB_API_KEY: "${FINNHUB_API_KEY:-}"
       FRED_API_KEY: "${FRED_API_KEY:-}"
@@ -47,12 +67,10 @@ services:
       KITE_API_SECRET: "${KITE_API_SECRET:-}"
       KITE_ACCESS_TOKEN: "${KITE_ACCESS_TOKEN:-}"
 
-      # No LM Studio on the VPS; falls back to the built-in sentiment engine.
+      # No LM Studio on this VPS; falls back to the built-in sentiment engine.
       LM_STUDIO_ENABLED: "${LM_STUDIO_ENABLED:-false}"
-      LM_STUDIO_BASE_URL: "${LM_STUDIO_BASE_URL:-http://host.docker.internal:1234/v1}"
-      LM_STUDIO_MODEL: "${LM_STUDIO_MODEL:-google/gemma-4-26b-a4b}"
 
-      # AI research agent — optional.
+      # AI research agent - optional.
       OPENROUTER_API_KEY: "${OPENROUTER_API_KEY:-}"
       GEMINI_API_KEY: "${GEMINI_API_KEY:-}"
       OPENROUTER_BASE_URL: "${OPENROUTER_BASE_URL:-https://openrouter.ai/api/v1}"
@@ -61,16 +79,15 @@ services:
       AGENT_DEBATE_ENABLED: "${AGENT_DEBATE_ENABLED:-true}"
       AGENT_STRATEGY_LOOP_ENABLED: "${AGENT_STRATEGY_LOOP_ENABLED:-true}"
       OPENTERMINALUI_PREFETCH_ENABLED: "${OPENTERMINALUI_PREFETCH_ENABLED:-0}"
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - openterminalui_data:/data
     depends_on:
-      postgres:
-        condition: service_healthy
       redis:
         condition: service_healthy
-    restart: unless-stopped
+    expose:
+      - "8000"
+    labels:
+      - coolify.managed=true
 
   redis:
     image: redis:7-alpine
@@ -85,26 +102,9 @@ services:
     volumes:
       - openterminalui_redis_data:/data
     restart: unless-stopped
-
-  postgres:
-    image: postgres:16-alpine
-    # No `profiles:` — upstream's gate is why Postgres never started.
-    # No published ports: 5432 stays off the public IP.
-    environment:
-      POSTGRES_DB: "${POSTGRES_DB:-openterminalui}"
-      POSTGRES_USER: "${POSTGRES_USER:-openterminalui}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?generate a strong password, do not use the upstream default}"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-      start_period: 10s
-    volumes:
-      - openterminalui_postgres_data:/var/lib/postgresql/data
-    restart: unless-stopped
+    labels:
+      - coolify.managed=true
 
 volumes:
   openterminalui_data:
   openterminalui_redis_data:
-  openterminalui_postgres_data:
