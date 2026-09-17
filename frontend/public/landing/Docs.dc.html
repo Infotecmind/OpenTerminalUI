@@ -42,8 +42,8 @@
   <!-- HEADER -->
   <header style="position:relative; max-width:1100px; margin:0 auto; padding:76px 32px 22px;">
     <div style="font-family:'Fira Code',monospace; font-size:11px; letter-spacing:.26em; text-transform:uppercase; color:#6a7488; margin-bottom:24px;">Documentation</div>
-    <h1 style="margin:0; font-weight:700; font-size:clamp(42px,6vw,84px); line-height:0.92; letter-spacing:-.04em; color:#f3f6fa;">Up and running,<br/><span style="color:var(--accent,#ff6b00);">fast.</span></h1>
-    <p style="margin:24px 0 0; font-size:18px; line-height:1.6; color:#8b94a3; max-width:560px;">Install, configure, and learn how data flows through FinInfo Terminal. Everything you need to self-host the terminal.</p>
+    <h1 style="margin:0; font-weight:700; font-size:clamp(42px,6vw,84px); line-height:0.92; letter-spacing:-.04em; color:#f3f6fa;">Know your way<br/><span style="color:var(--accent,#ff6b00);">around.</span></h1>
+    <p style="margin:24px 0 0; font-size:18px; line-height:1.6; color:#8b94a3; max-width:560px;">How to drive the terminal: finding instruments, reading charts, screening the market, and keeping track of positions.</p>
   </header>
 
   <!-- BODY -->
@@ -52,138 +52,116 @@
     <!-- TOC -->
     <aside style="position:sticky; top:96px; display:flex; flex-direction:column; gap:3px; font-family:'Fira Code',monospace; font-size:12px;">
       <div style="color:#5b6472; letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; font-size:10px;">On this page</div>
-      <a href="#quickstart" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Quick start</a>
-      <a href="#prereqs" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Prerequisites</a>
-      <a href="#docker" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Run with Docker</a>
-      <a href="#local" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Run locally</a>
-      <a href="#env" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Environment</a>
-      <a href="#providers" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Data providers</a>
-      <a href="#cache" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Caching</a>
+      <a href="#start" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Getting started</a>
+      <a href="#go" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Find a symbol</a>
+      <a href="#palette" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Command palette</a>
+      <a href="#charts" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Charts</a>
+      <a href="#research" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Research</a>
+      <a href="#portfolio" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Portfolio</a>
+      <a href="#alerts" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Alerts</a>
       <a href="#keys" style="color:#8b94a3; text-decoration:none; padding:5px 0;">Keyboard</a>
     </aside>
 
     <!-- CONTENT -->
     <main style="min-width:0; display:flex; flex-direction:column; gap:56px;">
-
-      <section id="quickstart" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Quick start</h2>
-        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">One command. The installer detects your OS, generates secrets, seeds an admin account, and launches the full stack at <span style="font-family:'Fira Code',monospace; color:#b9c2d0;">localhost:8000</span>.</p>
-        <div style="border:1px solid rgba(255,255,255,.09); border-radius:12px; background:#0b0e14; overflow:hidden;">
-          <div style="display:flex; align-items:center; gap:8px; padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.06);"><span style="width:8px; height:8px; border-radius:50%; background:#ff5f56;"></span><span style="width:8px; height:8px; border-radius:50%; background:#ffbd2e;"></span><span style="width:8px; height:8px; border-radius:50%; background:#27c93f;"></span><span style="margin-left:8px; font-family:'Fira Code',monospace; font-size:11px; color:#6a7488;">bash</span></div>
-          <div style="padding:18px 20px; font-family:'Fira Code',monospace; font-size:13.5px; line-height:1.95;">
-            <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">open https://fininfoterminal.tecsolutiongroup.com</span></div>
-            <div><span style="color:#5b6472;"># sign in with your FinInfo Terminal account</span></div>
-            <div style="margin-top:6px;"><span style="color:#2ec27e;">✓ ready → fininfoterminal.tecsolutiongroup.com</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="prereqs" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Prerequisites</h2>
-        <p style="margin:0 0 16px; font-size:16px; line-height:1.6; color:#8b94a3;">Either Docker, or — for the local path — Python and Node. Nothing else to configure.</p>
+      <section id="start" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Getting started</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">FinInfo Terminal is hosted, so there is nothing to install. Open the site, sign in, and the terminal opens on Home.</p>
         <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:14px 18px;"><span style="font-family:'Fira Code',monospace; font-size:12px; color:var(--accent,#ff6b00); min-width:120px;">Docker Desktop</span><span style="font-size:14px; color:#9aa3b2;">Recommended — full stack in containers</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:14px 18px;"><span style="font-family:'Fira Code',monospace; font-size:12px; color:var(--accent,#ff6b00); min-width:120px;">Python 3.11+</span><span style="font-size:14px; color:#9aa3b2;">Backend (local development only)</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:14px 18px;"><span style="font-family:'Fira Code',monospace; font-size:12px; color:var(--accent,#ff6b00); min-width:120px;">Node.js 22+</span><span style="font-size:14px; color:#9aa3b2;">Frontend (local development only)</span></div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Sign in at <span style="font-family:'Fira Code',monospace; color:#d6dce6;">fininfoterminal.tecsolutiongroup.com</span>.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Home is mission control: watchlist, news and your saved views on one screen.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>The left rail moves between areas; the top bar carries the GO bar and the command palette.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Layouts persist as saved views, so the desk looks the same next session.</div>
         </div>
       </section>
 
-      <section id="docker" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Run with Docker</h2>
-        <div style="border:1px solid rgba(255,255,255,.09); border-radius:12px; background:#0b0e14; overflow:hidden;">
-          <div style="display:flex; align-items:center; gap:8px; padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.06);"><span style="width:8px; height:8px; border-radius:50%; background:#ff5f56;"></span><span style="width:8px; height:8px; border-radius:50%; background:#ffbd2e;"></span><span style="width:8px; height:8px; border-radius:50%; background:#27c93f;"></span><span style="margin-left:8px; font-family:'Fira Code',monospace; font-size:11px; color:#6a7488;">bash</span></div>
-          <div style="padding:18px 20px; font-family:'Fira Code',monospace; font-size:13.5px; line-height:1.95;">
-            <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">cp .env.example .env</span> <span style="color:#5b6472;"># add API keys if you have them</span></div>
-            <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">docker compose up --build</span></div>
-            <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">docker compose --profile postgres up --build</span> <span style="color:#5b6472;"># with PostgreSQL</span></div>
-          </div>
-        </div>
-        <p style="margin:14px 0 0; font-size:14px; line-height:1.6; color:#73798a;">UI and API are served from the backend container at <span style="font-family:'Fira Code',monospace; color:#b9c2d0;">http://127.0.0.1:8000</span>. Use <span style="font-family:'Fira Code',monospace; color:#b9c2d0;">docker compose down -v</span> to wipe the database for a fresh start.</p>
-      </section>
-
-      <section id="local" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Run locally</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px;">
-          <div style="border:1px solid rgba(255,255,255,.09); border-radius:12px; background:#0b0e14; overflow:hidden;">
-            <div style="padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.06); font-family:'Fira Code',monospace; font-size:11px; color:var(--accent,#ff6b00); letter-spacing:.08em; text-transform:uppercase;">Backend</div>
-            <div style="padding:16px 18px; font-family:'Fira Code',monospace; font-size:12.5px; line-height:1.9;">
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">python3.11 -m venv .venv</span></div>
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">source .venv/bin/activate</span></div>
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">pip install -r backend/requirements.txt</span></div>
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">uvicorn backend.main:app --reload</span></div>
-            </div>
-          </div>
-          <div style="border:1px solid rgba(255,255,255,.09); border-radius:12px; background:#0b0e14; overflow:hidden;">
-            <div style="padding:9px 14px; border-bottom:1px solid rgba(255,255,255,.06); font-family:'Fira Code',monospace; font-size:11px; color:var(--accent,#ff6b00); letter-spacing:.08em; text-transform:uppercase;">Frontend</div>
-            <div style="padding:16px 18px; font-family:'Fira Code',monospace; font-size:12.5px; line-height:1.9;">
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">cd frontend</span></div>
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">npm ci</span></div>
-              <div><span style="color:#5b6472;">$</span> <span style="color:#d6dce6;">npm run dev</span></div>
-              <div style="margin-top:6px;"><span style="color:#2ec27e;">→ localhost:5173</span></div>
-            </div>
-          </div>
+      <section id="go" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Finding a symbol</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">The GO bar is the fastest route to any instrument. It takes a ticker, a company name, or a command.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Press <span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+G</span> from anywhere to focus it.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Type a ticker to jump straight to that security page.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Coverage spans equities, forex, commodities, bonds, mutual funds and derivatives.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Right-click any symbol in the terminal for its context actions.</div>
         </div>
       </section>
 
-      <section id="env" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 8px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Environment</h2>
-        <p style="margin:0 0 16px; font-size:16px; line-height:1.6; color:#8b94a3;">All keys are optional — the platform runs on built-in fallback data. Add keys to unlock live feeds.</p>
-        <div style="border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; font-family:'Fira Code',monospace; font-size:13px;">
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; background:#0e121a; border-bottom:1px solid rgba(255,255,255,.06); padding:10px 16px; color:#6a7488; font-size:11px; letter-spacing:.08em; text-transform:uppercase;"><div>Variable</div><div>Purpose</div></div>
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:var(--accent,#ff6b00);">FMP_API_KEY</div><div style="color:#9aa3b2;">US equities, fundamentals, earnings</div></div>
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:var(--accent,#ff6b00);">FINNHUB_API_KEY</div><div style="color:#9aa3b2;">US real-time WebSocket ticks</div></div>
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:var(--accent,#ff6b00);">KITE_API_KEY</div><div style="color:#9aa3b2;">Zerodha Kite — India NSE/BSE live + historical</div></div>
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:var(--accent,#ff6b00);">LM_STUDIO_BASE_URL</div><div style="color:#9aa3b2;">Local Gemma endpoint for AI sentiment</div></div>
-          <div style="display:grid; grid-template-columns:1fr 1.4fr; padding:11px 16px;"><div style="color:var(--accent,#ff6b00);">OPENROUTER_API_KEY</div><div style="color:#9aa3b2;">Powers the AI research agent (free models work)</div></div>
+      <section id="palette" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Command palette</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">Every action is reachable by name, so nothing has to be hunted for in a menu.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+K</span> opens the palette; start typing to filter.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+/</span> lists every shortcut currently in scope.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+9</span> opens the launchpad for moving between areas.</div>
         </div>
       </section>
 
-      <section id="providers" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 8px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Data providers</h2>
-        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">A multi-provider waterfall tries the highest-quality source first and falls back automatically on failure.</p>
-
-        <div style="font-family:'Fira Code',monospace; font-size:11px; color:var(--accent,#ff6b00); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px;">India</div>
-        <div style="border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; font-family:'Fira Code',monospace; font-size:13px; margin-bottom:22px;">
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; background:#0e121a; border-bottom:1px solid rgba(255,255,255,.06); padding:10px 16px; color:#6a7488; font-size:11px; letter-spacing:.08em; text-transform:uppercase;"><div>Provider</div><div>Role</div><div>Data</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:#dce1ea;">Zerodha Kite</div><div style="color:#2ec27e;">Primary</div><div style="color:#9aa3b2;">Real-time ticks, OHLCV all intervals</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:#dce1ea;">yfinance</div><div style="color:#ffbd2e;">Fallback</div><div style="color:#9aa3b2;">OHLCV historical (.NS format)</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px;"><div style="color:#dce1ea;">NSEPython</div><div style="color:#3fbaff;">Tertiary</div><div style="color:#9aa3b2;">F&amp;O, OI, PCR, corporate actions</div></div>
-        </div>
-
-        <div style="font-family:'Fira Code',monospace; font-size:11px; color:var(--accent,#ff6b00); letter-spacing:.1em; text-transform:uppercase; margin-bottom:10px;">US</div>
-        <div style="border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; font-family:'Fira Code',monospace; font-size:13px;">
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; background:#0e121a; border-bottom:1px solid rgba(255,255,255,.06); padding:10px 16px; color:#6a7488; font-size:11px; letter-spacing:.08em; text-transform:uppercase;"><div>Provider</div><div>Role</div><div>Data</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:#dce1ea;">FMP</div><div style="color:#2ec27e;">Primary</div><div style="color:#9aa3b2;">OHLCV, fundamentals, earnings, news</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px; border-bottom:1px solid rgba(255,255,255,.05);"><div style="color:#dce1ea;">Finnhub</div><div style="color:#2ec27e;">Real-time WS</div><div style="color:#9aa3b2;">WebSocket ticks, OHLCV, news</div></div>
-          <div style="display:grid; grid-template-columns:1fr 0.8fr 1.4fr; padding:11px 16px;"><div style="color:#dce1ea;">yfinance</div><div style="color:#ffbd2e;">Last resort</div><div style="color:#9aa3b2;">OHLCV historical</div></div>
+      <section id="charts" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Charts and the workstation</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">The chart workstation holds several panels at once, each with its own symbol, timeframe and studies.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+Shift+N</span> adds a panel; <span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+L</span> changes the layout.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Tab</span> and <span style="font-family:'Fira Code',monospace; color:#d6dce6;">1-9</span> move focus between panels; <span style="font-family:'Fira Code',monospace; color:#d6dce6;">F</span> makes one fullscreen.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Alt+1-7</span> switches timeframe from one minute through one month.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>On the focused pane: <span style="font-family:'Fira Code',monospace; color:#d6dce6;">I</span> indicators, <span style="font-family:'Fira Code',monospace; color:#d6dce6;">D</span> drawings, <span style="font-family:'Fira Code',monospace; color:#d6dce6;">V</span> volume profile, <span style="font-family:'Fira Code',monospace; color:#d6dce6;">R</span> replay.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Replay steps the chart through history bar by bar, so a setup can be judged as it formed.</div>
         </div>
       </section>
 
-      <section id="cache" data-reveal style="scroll-margin-top:96px;">
-        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Caching &amp; failover</h2>
-        <div style="border:1px solid rgba(255,255,255,.08); border-radius:12px; background:#0b0e14; padding:18px 22px; font-family:'Fira Code',monospace; font-size:13px; color:#9aa3b2; overflow-x:auto; white-space:nowrap; margin-bottom:16px;">
-          <span style="color:#5b6472;">request →</span> <span style="color:var(--accent,#ff6b00);">L1 SQLite</span> <span style="color:#2ec27e;">hit</span> · <span style="color:var(--accent,#ff6b00);">L2 Redis</span> <span style="color:#2ec27e;">hit</span> · <span style="color:var(--accent,#ff6b00);">primary</span> · <span style="color:var(--accent,#ff6b00);">fallback</span> <span style="color:#5b6472;">→</span> <span style="color:#ff5d5d;">503</span>
+      <section id="research" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Research and screening</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">Screen the market, then take the shortlist straight into a chart or a portfolio.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Screener builds filters on fundamentals, technicals and custom formulas.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Heatmap, hotlists and relative strength show where the session is actually moving.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Compare and correlation put several instruments side by side.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Factors and Alpha Zoo test which signals carried return over a period.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>News carries sentiment scoring; <span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+N</span> opens it from anywhere.</div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:9px;">
-          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">—</span>Primary cache: SQLite, per-symbol/interval, default TTL 900s</div>
-          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">—</span>Optional L2: Redis via <span style="font-family:'Fira Code',monospace; color:#b9c2d0;">REDIS_URL</span>, falls back to SQLite</div>
-          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">—</span>Live WebSocket candles update in-memory without touching cache</div>
-          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">—</span>Cache warming via <span style="font-family:'Fira Code',monospace; color:#b9c2d0;">OPENTERMINALUI_PREFETCH_ENABLED=1</span></div>
+      </section>
+
+      <section id="portfolio" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Portfolio, paper trading and risk</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">Positions, simulated execution, and the record of why a trade was taken all live in one place.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Portfolio tracks holdings and performance; Portfolio Lab backtests and blends strategies.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Paper trading runs orders against live prices on virtual capital.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Position sizer works the size back from the risk you are willing to take.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Journal keeps the reasoning beside the fill, which is what makes a review worth doing.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Risk and OMS cover exposure, limits and order state.</div>
+        </div>
+      </section>
+
+      <section id="alerts" data-reveal style="scroll-margin-top:96px;">
+        <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Watchlists and alerts</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">Let the terminal watch the levels you care about instead of watching them yourself.</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+W</span> opens the watchlist outside the chart workstation.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span>Alerts fire on price and on multi-condition rules.</div>
+          <div style="display:flex; gap:10px; font-size:15px; color:#9aa3b2; line-height:1.5;"><span style="color:var(--accent,#ff6b00);">&mdash;</span><span style="font-family:'Fira Code',monospace; color:#d6dce6;">A</span> opens the alert centre for the symbol in the focused chart pane.</div>
         </div>
       </section>
 
       <section id="keys" data-reveal style="scroll-margin-top:96px;">
         <h2 style="margin:0 0 16px; font-weight:600; font-size:30px; letter-spacing:-.02em; color:#f3f6fa;">Keyboard shortcuts</h2>
+        <p style="margin:0 0 18px; font-size:16px; line-height:1.6; color:#8b94a3;">The live list is always available inside the terminal with <span style="font-family:'Fira Code',monospace; color:#d6dce6;">Ctrl/Cmd+/</span>.</p>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">Ctrl+G</kbd><span style="font-size:14px; color:#9aa3b2;">GO bar — symbol lookup</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">Ctrl+K</kbd><span style="font-size:14px; color:#9aa3b2;">Command palette</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">Ctrl+J</kbd><span style="font-size:14px; color:#9aa3b2;">AI research agent</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">F1–F9</kbd><span style="font-size:14px; color:#9aa3b2;">Workspace switching</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">1–7</kbd><span style="font-size:14px; color:#9aa3b2;">Timeframe hotkeys</span></div>
-          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:72px; text-align:center;">Esc</kbd><span style="font-size:14px; color:#9aa3b2;">Close panel or dialog</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+K</kbd><span style="font-size:14px; color:#9aa3b2;">Toggle command palette</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+/</kbd><span style="font-size:14px; color:#9aa3b2;">Open shortcut help</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+G</kbd><span style="font-size:14px; color:#9aa3b2;">Focus the GO bar</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+N</kbd><span style="font-size:14px; color:#9aa3b2;">Open news</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+W</kbd><span style="font-size:14px; color:#9aa3b2;">Open watchlist</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+9</kbd><span style="font-size:14px; color:#9aa3b2;">Open launchpad</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+Shift+N</kbd><span style="font-size:14px; color:#9aa3b2;">Add a chart panel</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Ctrl/Cmd+L</kbd><span style="font-size:14px; color:#9aa3b2;">Focus layout selector</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Tab</kbd><span style="font-size:14px; color:#9aa3b2;">Next chart panel</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">1-9</kbd><span style="font-size:14px; color:#9aa3b2;">Focus panel by index</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">Alt+1-7</kbd><span style="font-size:14px; color:#9aa3b2;">Set timeframe</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">F</kbd><span style="font-size:14px; color:#9aa3b2;">Fullscreen the focused panel</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">I D V R</kbd><span style="font-size:14px; color:#9aa3b2;">Indicators, drawings, volume profile, replay</span></div>
+          <div style="display:flex; align-items:center; gap:14px; border:1px solid rgba(255,255,255,.07); border-radius:10px; background:#0c1016; padding:12px 16px;"><kbd style="font-family:'Fira Code',monospace; font-size:12px; padding:5px 10px; border:1px solid rgba(255,255,255,.12); border-radius:6px; background:#11151c; color:var(--accent,#ff6b00); min-width:96px; text-align:center;">A</kbd><span style="font-size:14px; color:#9aa3b2;">Alert centre for the symbol</span></div>
         </div>
       </section>
-
     </main>
   </div>
 
