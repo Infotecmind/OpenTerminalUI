@@ -37,7 +37,7 @@ def portable_ddl(sql: str) -> str:
     if engine.dialect.name != "postgresql":
         return sql
     return re.sub(
-        r"INTEGER\s+PRIMARY\s+KEY\s+AUTOINCREMENT",
+        r"INTEGER\s+PRIMARY\s+KEY\s+AUTOINCREMENT",
         "SERIAL PRIMARY KEY",
         sql,
         flags=re.IGNORECASE,
